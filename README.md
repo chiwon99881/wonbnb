@@ -57,3 +57,5 @@ django-admin startapp reservations
 - #8 Custom User Model 3
 
 - #9 Custom User Admin 1
+
+- #10 Custom User Admin 2
