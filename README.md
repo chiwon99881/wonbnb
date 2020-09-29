@@ -27,3 +27,8 @@ git commit -m "#1 First Init"
 - #2 Create a Django Project
 
 django-admin startproject config
+
+- #3 Settings
+
+linter : flake8
+formatting : black
