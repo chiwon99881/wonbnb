@@ -32,3 +32,20 @@ django-admin startproject config
 
 linter : flake8
 formatting : black
+
+- #4 commander
+
+python manage.py createsuperuser
+
+python manage.py runserver
+
+python manage.py migrate
+
+- #5 Application
+
+django-admin startapp rooms
+django-admin startapp users
+django-admin startapp reviews
+django-admin startapp conversations
+django-admin startapp lists
+django-admin startapp reservations
