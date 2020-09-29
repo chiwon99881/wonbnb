@@ -51,3 +51,7 @@ django-admin startapp lists
 django-admin startapp reservations
 
 - #6 Custom User Model 1
+
+- #7 Custom User Model 2
+
+- #8 Custom User Model 3
