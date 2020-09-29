@@ -1,6 +1,6 @@
 # Airbnb Clone
 
-# #1
+- #1 First Init
 
 Cloning Airbnb with Python
 
@@ -23,3 +23,7 @@ touch .gitignore
 git add .
 
 git commit -m "#1 First Init"
+
+- #2 Create a Django Project
+
+django-admin startproject config
