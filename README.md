@@ -49,3 +49,5 @@ django-admin startapp reviews
 django-admin startapp conversations
 django-admin startapp lists
 django-admin startapp reservations
+
+- #6 Custom User Model 1
