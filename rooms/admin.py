@@ -4,8 +4,8 @@ from . import models
 # Register your models here.
 
 
-@admin.register(models.RoomType)
-class RoomTypeAdmin(admin.ModelAdmin):
+@admin.register(models.RoomType, models.Amenity, models.Facility, models.HouseRule)
+class ItemAdmin(admin.ModelAdmin):
 
     pass
 
