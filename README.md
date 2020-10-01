@@ -61,3 +61,5 @@ django-admin startapp reservations
 - #10 Custom User Admin 2
 
 - #11 Recap
+
+- #12 TimeStampModel
