@@ -63,3 +63,7 @@ django-admin startapp reservations
 - #11 Recap
 
 - #12 TimeStampModel
+
+- #13 Room Model 1
+
+pipenv install django-countries
