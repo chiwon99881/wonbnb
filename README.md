@@ -77,3 +77,5 @@ pipenv install django-countries
 - #17 Review Model
 
 - #18 Reservation Model
+
+- #19 List Model
