@@ -83,3 +83,5 @@ pipenv install django-countries
 - #20 Conversation Model
 
 - #21 Refactoring Room Admin
+
+- #22 Refactoring Room Admin 2
