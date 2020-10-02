@@ -93,3 +93,5 @@
 - #25 Set related_name
 
 - #26 Finish Room Admin
+
+- #27 Reservation Admin
