@@ -38,7 +38,7 @@ formatting : black
 python manage.py createsuperuser
 
 python manage.py runserver
-
+python manage.py makemigrations
 python manage.py migrate
 
 - #5 Application
@@ -75,3 +75,5 @@ pipenv install django-countries
 - #16 Room Model 4
 
 - #17 Review Model
+
+- #18 Reservation Model
