@@ -91,3 +91,5 @@
 - #24 QuerySet
 
 - #25 Set related_name
+
+- #26 Finish Room Admin
