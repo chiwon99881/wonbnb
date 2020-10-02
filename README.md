@@ -66,7 +66,7 @@ django-admin startapp reservations
 
 - #13 Room Model 1
 
-pipenv install django-countries
+> pipenv install django-countries
 
 - #14 Room Model 2
 
@@ -85,3 +85,5 @@ pipenv install django-countries
 - #21 Refactoring Room Admin
 
 - #22 Refactoring Room Admin 2
+
+- #23 Refactoring Room Admin 3
