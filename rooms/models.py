@@ -23,12 +23,21 @@ class RoomType(AbstractItem):
 
     """ RoomType Model Definition """
 
+    class Meta:
+        # verbose_name is present "specify word+s" in Admin panel
+        verbose_name = "Room Type"
+        ordering = ["created"]
+
     pass
 
 
 class Amenity(AbstractItem):
 
     """ Amenity Model Definition """
+
+    class Meta:
+        # verbose_name_plural is present "specify word" in Admin panel
+        verbose_name_plural = "Amenities"
 
     pass
 
@@ -37,6 +46,9 @@ class Facility(AbstractItem):
 
     """ Facility Model Definition """
 
+    class Meta:
+        verbose_name_plural = "Facilities"
+
     pass
 
 
@@ -44,7 +56,23 @@ class HouseRule(AbstractItem):
 
     """ HouseRule Model Definition """
 
+    class Meta:
+        verbose_name = "House Rule"
+
     pass
+
+
+class Photo(core_models.TimeStampedModel):
+
+    """ Photo Model Definition """
+
+    caption = models.CharField(max_length=100)
+    file = models.ImageField()
+    # "Room" mean Room class because Room class is located lower then Photo class
+    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.caption
 
 
 class Room(core_models.TimeStampedModel):
@@ -68,9 +96,9 @@ class Room(core_models.TimeStampedModel):
     room_type = models.ForeignKey(
         RoomType, on_delete=models.SET_NULL, blank=True, null=True
     )
-    amenity = models.ManyToManyField(Amenity)
-    facility = models.ManyToManyField(Facility)
-    house_rules = models.ManyToManyField(HouseRule)
+    amenity = models.ManyToManyField(Amenity, blank=True)
+    facility = models.ManyToManyField(Facility, blank=True)
+    house_rules = models.ManyToManyField(HouseRule, blank=True)
 
     # present Room Object to name
     def __str__(self):
