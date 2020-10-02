@@ -73,3 +73,5 @@ pipenv install django-countries
 - #15 Room Model 3
 
 - #16 Room Model 4
+
+- #17 Review Model
