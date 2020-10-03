@@ -103,3 +103,5 @@
 - #30 Photo uploads 2
 
 - #31 Photo Admin
+
+- #32 AdminInline
