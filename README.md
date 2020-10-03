@@ -105,3 +105,9 @@
 - #31 Photo Admin
 
 - #32 AdminInline
+
+- #33 super() theory
+  > first, all python class have "**init**" function, this function called when the class created.
+  > second, if we want override parent class method, we use overridng is right ?
+  > but, if we want change parent class method, then what do you do?
+  > That's super() method ! when it's used.
