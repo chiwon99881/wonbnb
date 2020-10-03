@@ -99,3 +99,5 @@
 - #28 Conversations, Lists Admin
 
 - #29 Photo uploads 1
+
+- #30 Photo uploads 2
