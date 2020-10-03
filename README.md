@@ -121,4 +121,6 @@
 
 - #37 Create dummy users data by django seed
 
-  > pipenv install django_seed
+  > pipenv install django-seed
+
+- #38 Create dummy rooms data by django seed
