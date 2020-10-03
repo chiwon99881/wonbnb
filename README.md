@@ -2,53 +2,53 @@
 
 - #1 First Init
 
-> Cloning Airbnb with Python
+  > Cloning Airbnb with Python
 
-> pip install --user pipenv
+  > pip install --user pipenv
 
-> pipenv --three
+  > pipenv --three
 
-> pipenv shell
+  > pipenv shell
 
-> pipenv install Django==2.2.5
+  > pipenv install Django==2.2.5
 
-> [Create Repository in github]
-> git init
+  > [Create Repository in github]
+  > git init
 
-> git remote add origin [remote URL]
+  > git remote add origin [remote URL]
 
-> touch README.md
-> touch .gitignore
+  > touch README.md
+  > touch .gitignore
 
-> git add .
+  > git add .
 
-> git commit -m "#1 First Init"
+  > git commit -m "#1 First Init"
 
 - #2 Create a Django Project
 
-> django-admin startproject config
+  > django-admin startproject config
 
 - #3 Settings
 
-> linter : flake8
-> formatting : black
+  > linter : flake8
+  > formatting : black
 
 - #4 commander
 
-> python manage.py createsuperuser
+  > python manage.py createsuperuser
 
-> python manage.py runserver
-> python manage.py makemigrations
-> python manage.py migrate
+  > python manage.py runserver
+  > python manage.py makemigrations
+  > python manage.py migrate
 
 - #5 Application
 
-> django-admin startapp rooms
-> django-admin startapp users
-> django-admin startapp reviews
-> django-admin startapp conversations
-> django-admin startapp lists
-> django-admin startapp reservations
+  > django-admin startapp rooms
+  > django-admin startapp users
+  > django-admin startapp reviews
+  > django-admin startapp conversations
+  > django-admin startapp lists
+  > django-admin startapp reservations
 
 - #6 Custom User Model 1
 
@@ -66,7 +66,7 @@
 
 - #13 Room Model 1
 
-> pipenv install django-countries
+  > pipenv install django-countries
 
 - #14 Room Model 2
 
@@ -107,7 +107,10 @@
 - #32 AdminInline
 
 - #33 super() theory
+
   > first, all python class have "**init**" function, this function called when the class created.
   > second, if we want override parent class method, we use overridng is right ?
   > but, if we want change parent class method, then what do you do?
   > That's super() method ! when it's used.
+
+- #34 super().save()
