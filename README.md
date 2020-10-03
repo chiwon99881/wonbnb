@@ -116,3 +116,5 @@
 - #34 super().save()
 
 - #35 create my custom commands 1
+
+- #36 create my custom commands 2 (create amenity)
