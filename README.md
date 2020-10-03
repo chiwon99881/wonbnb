@@ -118,3 +118,7 @@
 - #35 create my custom commands 1
 
 - #36 create my custom commands 2 (create amenity)
+
+- #37 Create dummy users data by django seed
+
+  > pipenv install django_seed
