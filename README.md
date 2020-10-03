@@ -97,3 +97,5 @@
 - #27 Reservation Admin
 
 - #28 Conversations, Lists Admin
+
+- #29 Photo uploads 1
