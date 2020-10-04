@@ -124,3 +124,8 @@
   > pipenv install django-seed
 
 - #38 Create dummy rooms data by django seed
+
+- #39 Create dummy photos data by django seed
+
+  > from django.contib.admin.utils import flatten
+  > flatten is simplify [[ ]] => []
