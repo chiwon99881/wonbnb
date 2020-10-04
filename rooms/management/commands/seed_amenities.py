@@ -1,10 +1,12 @@
 from django.core.management.base import BaseCommand
 from rooms import models as rooms_models
 
+NAME = "amenities"
+
 
 class Command(BaseCommand):
 
-    help = "This command create amenities"
+    help = f"This command create {NAME}"
 
     # def add_arguments(self, parser):
     #     parser.add_argument(
@@ -60,4 +62,4 @@ class Command(BaseCommand):
 
         for amenity in amenities:
             rooms_models.Amenity.objects.create(name=amenity)
-        self.stdout.write(self.style.SUCCESS("Amenities created."))
+        self.stdout.write(self.style.SUCCESS(f"{NAME} created."))

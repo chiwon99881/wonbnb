@@ -133,3 +133,5 @@
 - #40 Create dummy amenities,facilities,house_rules data by django seed
 
 - #41 Create dummy reviews data by django seed
+
+- #42 Create dummy lists data by django seed
