@@ -143,3 +143,8 @@
 - #45 View request
 
 - #46 Pagination by hard coding
+
+- #46 Pagination button by hard coding
+
+  > Django-Template language : add
+  > https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language
