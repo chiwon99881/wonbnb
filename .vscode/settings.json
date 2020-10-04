@@ -4,5 +4,6 @@
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
-  "python.linting.flake8Args": ["--max-line-length=100"]
+  "python.linting.flake8Args": ["--max-line-length=100"],
+  "prettier.printWidth": 75
 }

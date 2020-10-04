@@ -137,3 +137,5 @@
 - #42 Create dummy lists data by django seed
 
 - #43 Create dummy reservations data by django seed
+
+- #44 Django-Template
