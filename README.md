@@ -141,3 +141,5 @@
 - #44 Django-Template
 
 - #45 View request
+
+- #46 Pagination by hard coding

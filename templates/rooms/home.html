@@ -1,4 +1,17 @@
-{% extends "base.html" %} {% block pagename %}Home{% endblock pagename %}
-{%block content %} {% for room in rooms %}
+{% extends "base.html" %} 
+
+{% block pagename %}Home{% endblock pagename %}
+
+{%block content %} 
+
+{% for room in rooms %}
 <h1>{{room.name}} / ${{room.price}}</h1>
-{% endfor %} {% endblock content %}
+{% endfor %}
+
+<h6>Page is: {{page}} of {{page_count}}</h6>
+
+{% for page in page_range %}
+    <a href="?page={{page}}">{{page}}</a>
+{% endfor %}
+
+{% endblock content %}
