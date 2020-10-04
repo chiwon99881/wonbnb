@@ -39,6 +39,9 @@ class Command(BaseCommand):
         )
         created_room = seeder.execute()
         created_clean = flatten(list(created_room.values()))
+        amenities = room_models.Amenity.objects.all()
+        facilities = room_models.Facility.objects.all()
+        house_rules = room_models.HouseRule.objects.all()
         for pk in created_clean:
             room = room_models.Room.objects.get(pk=pk)
             for i in range(3, random.randint(7, 10)):
@@ -47,4 +50,20 @@ class Command(BaseCommand):
                     room=room,
                     file=f"room_photos/{random.randint(1,31)}.webp",
                 )
+            for amenity in amenities:
+                ran_num = random.randint(0, 45)
+                if ran_num % 2 == 0:
+                    # The way to add ManyToManyField is add() method.
+                    room.amenity.add(amenity)
+            for facility in facilities:
+                ran_num = random.randint(0, 45)
+                if ran_num % 2 == 0:
+                    # The way to add ManyToManyField is add() method.
+                    room.facility.add(facility)
+            for rule in house_rules:
+                ran_num = random.randint(0, 45)
+                if ran_num % 2 == 0:
+                    # The way to add ManyToManyField is add() method.
+                    room.house_rules.add(rule)
+
         self.stdout.write(self.style.SUCCESS(f"{number} rooms created."))

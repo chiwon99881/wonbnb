@@ -129,3 +129,7 @@
 
   > from django.contib.admin.utils import flatten
   > flatten is simplify [[ ]] => []
+
+- #40 Create dummy amenities,facilities,house_rules data by django seed
+
+- #41 Create dummy reviews data by django seed
