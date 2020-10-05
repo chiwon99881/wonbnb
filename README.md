@@ -158,3 +158,5 @@
   > https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language
 
 - #47 Using Django Paginator
+
+- #48 Using Django Paginator 2

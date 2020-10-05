@@ -10,7 +10,7 @@ def all_rooms(request):
     room_list = room_models.Room.objects.all()
 
     # paginator => Paginator
-    paginator = Paginator(room_list, 10)
+    paginator = Paginator(room_list, 10, orphans=5)
     # rooms => Paginator.page()
     # rooms.paginator => The associated Paginator Object like "paginator"
     rooms = paginator.get_page(page)

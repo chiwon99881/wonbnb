@@ -11,14 +11,19 @@
 
 <h6>
 
+{% comment %} 
+has_previous is function but, didn't write like this: has_previous() in django-template.
+because django-template very smart so translate has_previous to has_previous()  
+{% endcomment %}
+
 {% if rooms.has_previous %}
-<a href="?page={{rooms.number | add:-1}}">Previous</a>
+<a href="?page={{rooms.previous_page_number}}">Previous</a>
 {% endif %}
 
 Page is: {{rooms.number}} of {{rooms.paginator.num_pages}}
 
 {% if rooms.has_next %}
-<a href="?page={{rooms.number | add:1}}">Next</a>
+<a href="?page={{rooms.next_page_number}}">Next</a>
 {% endif %}
 
 
