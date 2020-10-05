@@ -38,16 +38,23 @@
   > python manage.py createsuperuser
 
   > python manage.py runserver
+
   > python manage.py makemigrations
+
   > python manage.py migrate
 
 - #5 Application
 
   > django-admin startapp rooms
+
   > django-admin startapp users
+
   > django-admin startapp reviews
+
   > django-admin startapp conversations
+
   > django-admin startapp lists
+
   > django-admin startapp reservations
 
 - #6 Custom User Model 1
@@ -147,4 +154,7 @@
 - #46 Pagination button by hard coding
 
   > Django-Template language : add
+
   > https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language
+
+- #47 Using Django Paginator
