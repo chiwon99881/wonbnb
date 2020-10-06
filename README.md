@@ -164,3 +164,5 @@
 - #49 Try / Except for Handling Exception
 
 - #50 Using ListView (Class Based View) for Paginator
+
+- #51 Using ListView (Class Based View) for Paginator 2
