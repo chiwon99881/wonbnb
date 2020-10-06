@@ -170,3 +170,5 @@
 - #52 Urls, Views and Arguments
 
 - #53 get_absolute_url
+
+- #54 Room Detail FBV
