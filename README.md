@@ -168,3 +168,5 @@
 - #51 Using ListView (Class Based View) for Paginator 2
 
 - #52 Urls, Views and Arguments
+
+- #53 get_absolute_url
