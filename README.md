@@ -166,3 +166,5 @@
 - #50 Using ListView (Class Based View) for Paginator
 
 - #51 Using ListView (Class Based View) for Paginator 2
+
+- #52 Urls, Views and Arguments
