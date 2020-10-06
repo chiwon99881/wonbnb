@@ -160,3 +160,5 @@
 - #47 Using Django Paginator
 
 - #48 Using Django Paginator 2
+
+- #49 Try / Except for Handling Exception
