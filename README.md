@@ -178,3 +178,5 @@
 - #56 Room Detail CBV
 
 - #57 Search Form 1
+
+- #58 Search Form 2
