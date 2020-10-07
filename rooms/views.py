@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.shortcuts import render
 from django.utils import timezone
 from . import models as room_models
 
@@ -31,3 +32,8 @@ class RoomDetail(DetailView):
     """ Room Detail Definition """
 
     model = room_models.Room
+
+
+def search(request):
+    city = request.GET.get("city", "No Search Data")
+    return render(request, "rooms/search.html", context={"city": str.capitalize(city)})

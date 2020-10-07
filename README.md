@@ -176,3 +176,5 @@
 - #55 Raise 404 Page
 
 - #56 Room Detail CBV
+
+- #57 Search Form 1
