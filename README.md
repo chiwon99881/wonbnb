@@ -174,3 +174,5 @@
 - #54 Room Detail FBV
 
 - #55 Raise 404 Page
+
+- #56 Room Detail CBV
