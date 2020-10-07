@@ -172,3 +172,5 @@
 - #53 get_absolute_url
 
 - #54 Room Detail FBV
+
+- #55 Raise 404 Page
