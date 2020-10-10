@@ -185,4 +185,8 @@
 
 - #60 Search Form 4
 
-- #61 Search Filter by Django Filter 1
+- #61 Search Rooms by Django Filter 1
+
+  > https://docs.djangoproject.com/en/3.1/ref/models/querysets/#field-lookups
+
+- #62 Search Rooms by Django Filter 2

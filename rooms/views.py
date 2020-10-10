@@ -1,3 +1,4 @@
+# import operator
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from django_countries import countries
@@ -46,9 +47,8 @@ def search(request):
     beds = int(request.GET.get("beds", 0))
     baths = int(request.GET.get("baths", 0))
     room_type = int(request.GET.get("room_type", 0))
-    instant_book = request.GET.get("instant_book", False)
-    super_host = request.GET.get("super_host", False)
-    print(instant_book, super_host)
+    instant_book = bool(request.GET.get("instant_book", False))
+    superhost = bool(request.GET.get("superhost", False))
     # get() only 1, getlist() get list
     select_amenities = request.GET.getlist("amenities")
     select_facilities = request.GET.getlist("facilities")
@@ -67,7 +67,7 @@ def search(request):
         "select_facilities": select_facilities,
         "select_house_rules": select_house_rules,
         "instant_book": instant_book,
-        "super_host": super_host,
+        "superhost": superhost,
     }
 
     room_types = room_models.RoomType.objects.all()
@@ -90,11 +90,33 @@ def search(request):
         filter_args["city__istartswith"] = city
     if room_type != 0:
         filter_args["room_type__pk"] = room_type
-
-    print(filter_args)
+    if price != 0:
+        filter_args["price__lte"] = price
+    if guests != 0:
+        filter_args["guests__gte"] = guests
+    if bathrooms != 0:
+        filter_args["bathrooms__gte"] = bathrooms
+    if baths != 0:
+        filter_args["baths__gte"] = baths
+    if beds != 0:
+        filter_args["beds__gte"] = beds
+    if instant_book is True:
+        filter_args["instant_book"] = True
+    if superhost is True:
+        filter_args["host__superhost"] = True
 
     rooms = room_models.Room.objects.filter(**filter_args)
-    print(rooms)
+
+    # Chains Filtering for AND operator
+    if len(select_amenities) > 0:
+        for s_amenities in select_amenities:
+            rooms = rooms.filter(amenity__pk=s_amenities)
+    if len(select_facilities) > 0:
+        for s_facilities in select_facilities:
+            rooms = rooms.filter(facility__pk=s_facilities)
+    if len(select_house_rules) > 0:
+        for s_rules in select_house_rules:
+            rooms = rooms.filter(house_rules__pk=s_rules)
 
     return render(
         request,
