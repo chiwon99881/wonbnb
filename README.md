@@ -196,3 +196,5 @@
   > https://docs.djangoproject.com/en/3.1/ref/forms/api/
 
 - #64 Search Rooms by Django Forms 2
+
+- #65 Search Rooms by Django Forms 3
