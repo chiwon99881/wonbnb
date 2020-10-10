@@ -83,8 +83,21 @@ def search(request):
         "house_rules": house_rules,
     }
 
+    filter_args = {}
+    filter_args["country"] = country
+
+    if city != "Anywhere":
+        filter_args["city__istartswith"] = city
+    if room_type != 0:
+        filter_args["room_type__pk"] = room_type
+
+    print(filter_args)
+
+    rooms = room_models.Room.objects.filter(**filter_args)
+    print(rooms)
+
     return render(
         request,
         "rooms/search.html",
-        context={**form, **choices},
+        context={**form, **choices, "rooms": rooms},
     )

@@ -184,3 +184,5 @@
 - #59 Search Form 3
 
 - #60 Search Form 4
+
+- #61 Search Filter by Django Filter 1
