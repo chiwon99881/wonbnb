@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block pagename %}Sign Up{% endblock pagename %}
+{% block search-bar %}{% endblock search-bar %}
+
+
+{% block content %}
+    <form method="POST" action="{% url 'users:signup' %}">
+        {{form.as_p}}
+        <button>Sign up</button>
+    </form>
+{% endblock content %}
+    
+    
+    

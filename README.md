@@ -210,3 +210,7 @@
 - #70 User Login and Logout 4
 
   > https://docs.djangoproject.com/en/3.1/topics/auth/default/
+
+- #71 Signup Form by FormView 1
+  > https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-editing/#django.views.generic.edit.FormView
+  > https://ccbv.co.uk/projects/Django/3.0/django.views.generic.edit/FormView/
