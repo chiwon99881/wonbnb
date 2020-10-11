@@ -204,3 +204,5 @@
 - #67 User Login 2 and CSRF
 
 - #68 User Login 3 (Validate Email)
+
+- #69 User Login 4 (Validate Password)
