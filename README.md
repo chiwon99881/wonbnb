@@ -218,3 +218,5 @@
   > https://ccbv.co.uk/projects/Django/3.0/django.views.generic.edit/FormView/
 
 - #72 Signup Form by FormView 2
+
+- #73 Signup Form Change to ModelForm
