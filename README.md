@@ -206,3 +206,7 @@
 - #68 User Login 3 (Validate Email)
 
 - #69 User Login 4 (Validate Password)
+
+- #70 User Login and Logout 4
+
+  > https://docs.djangoproject.com/en/3.1/topics/auth/default/
