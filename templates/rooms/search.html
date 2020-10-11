@@ -20,4 +20,12 @@
         <h4>{{room.name}}</h4>
     {% endfor %}
 
+    {% if rooms.has_previous %}
+        <a href="?page={{rooms.previous_page_number}}">Previous</a>
+    {% endif %}
+
+    {% if rooms.has_next %}
+        <a href="?page={{rooms.next_page_number}}">Next</a>
+    {% endif %}
+
 {% endblock content %}

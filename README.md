@@ -198,3 +198,5 @@
 - #64 Search Rooms by Django Forms 2
 
 - #65 Search Rooms by Django Forms 3
+
+- #65 Finish Django Forms and User Login 1

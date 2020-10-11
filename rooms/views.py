@@ -2,6 +2,7 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from django.utils import timezone
+from django.core.paginator import Paginator
 from . import models as room_models
 from . import forms
 
@@ -39,6 +40,9 @@ class RoomDetail(DetailView):
 def search(request):
 
     country = request.GET.get("country")
+    header_city = request.GET.get("city")
+
+    print(header_city)
 
     if country:
 
@@ -58,7 +62,6 @@ def search(request):
             amenities = form.cleaned_data.get("amenities")
             facilities = form.cleaned_data.get("facilities")
             house_rules = form.cleaned_data.get("house_rules")
-            print(form.cleaned_data)
             filter_args = {}
 
             if city != "Anywhere":
@@ -82,27 +85,52 @@ def search(request):
             if superhost is True:
                 filter_args["host__superhost"] = True
 
-            rooms = room_models.Room.objects.filter(**filter_args)
+            qs = room_models.Room.objects.filter(**filter_args)
 
             if amenities is not None:
                 for amenity in amenities:
-                    rooms = rooms.filter(amenity=amenity)
+                    qs = qs.filter(amenity=amenity)
             if facilities is not None:
                 for facility in facilities:
-                    rooms = rooms.filter(facility=facility)
+                    qs = qs.filter(facility=facility)
             if house_rules is not None:
                 for rules in house_rules:
-                    rooms = rooms.filter(house_rules=rules)
+                    qs = qs.filter(house_rules=rules)
+
+            qs = qs.order_by("-created")
+
+            paginator = Paginator(qs, 10, orphans=5)
+
+            page = request.GET.get("page", 1)
+
+            rooms = paginator.get_page(page)
 
             return render(
                 request,
                 "rooms/search.html",
                 context={"form": form, "rooms": rooms},
             )
-    else:
-        form = forms.SearchForm()
+    elif header_city is not None and country is None:
+        header_city = str.capitalize(header_city)
+        form = forms.SearchForm(data={"city": header_city})
+
+        qs = room_models.Room.objects.filter(city=header_city).order_by("-created")
+
+        paginator = Paginator(qs, 10, orphans=5)
+
+        page = request.GET.get("page", 1)
+
+        rooms = paginator.get_page(page)
+
         return render(
             request,
             "rooms/search.html",
-            context={"form": form},
+            context={"form": form, "rooms": rooms},
         )
+    else:
+        form = forms.SearchForm()
+    return render(
+        request,
+        "rooms/search.html",
+        context={"form": form},
+    )
