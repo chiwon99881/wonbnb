@@ -199,4 +199,6 @@
 
 - #65 Search Rooms by Django Forms 3
 
-- #65 Finish Django Forms and User Login 1
+- #66 Finish Django Forms and User Login 1
+
+- #67 User Login 2 and CSRF
