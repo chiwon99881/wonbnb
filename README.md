@@ -228,3 +228,5 @@
   > https://github.com/jpadilla/django-dotenv
 
   > pipenv install django-dotenv
+
+- #75 Email Verification by Django Sending Email 2

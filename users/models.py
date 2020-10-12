@@ -1,5 +1,8 @@
+import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.core.mail import send_mail
+from config import settings
 
 # Create your models here.
 # custom User model refer to: https://docs.djangoproject.com/en/3.1/topics/auth/customizing/
@@ -43,8 +46,18 @@ class User(AbstractUser):
         choices=CURRENCY_CHOICES, max_length=3, blank=True, default=CURRENCY_KRW
     )
     superhost = models.BooleanField(default=False)
-    email_confirmed = models.BooleanField(default=False)
+    email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=120, default="", blank=True)
 
     def verify_email(self):
-        pass
+        if self.email_verified is False:
+            secret = uuid.uuid4().hex[:20]
+            self.email_secret = secret
+            send_mail(
+                "Verify Wonbnb Account",
+                f"Verify account, this is your secret: {secret}",
+                settings.EMAIL_FROM,
+                [self.email],
+                fail_silently=False,
+            )
+        return
