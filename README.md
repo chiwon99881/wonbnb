@@ -220,3 +220,11 @@
 - #72 Signup Form by FormView 2
 
 - #73 Signup Form Change to ModelForm
+
+- #74 Email Verification by Django Sending Email 1
+
+  > https://docs.djangoproject.com/en/3.1/topics/email/
+
+  > https://github.com/jpadilla/django-dotenv
+
+  > pipenv install django-dotenv
