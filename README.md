@@ -234,3 +234,5 @@
 - #76 Email Verification by Django Sending Email 3
 
 - #77 Email Verification by Django Sending Email 4
+
+- #78 Github Login 1
