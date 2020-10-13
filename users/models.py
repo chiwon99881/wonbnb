@@ -4,7 +4,12 @@ from django.db import models
 from django.core.mail import send_mail
 from config import settings
 
-# Create your models here.
+# strip_tags is change html text to text.
+from django.utils.html import strip_tags
+
+# render_to_string is load a template and render the template.
+from django.template.loader import render_to_string
+
 # custom User model refer to: https://docs.djangoproject.com/en/3.1/topics/auth/customizing/
 
 
@@ -53,11 +58,15 @@ class User(AbstractUser):
         if self.email_verified is False:
             secret = uuid.uuid4().hex[:20]
             self.email_secret = secret
+            html_message = render_to_string(
+                "emails/verify_email.html", context={"secret": secret}
+            )
             send_mail(
                 "Verify Wonbnb Account",
-                f"Verify account, this is your secret: {secret}",
+                strip_tags(html_message),
                 settings.EMAIL_FROM,
                 [self.email],
                 fail_silently=False,
+                html_message=html_message,
             )
         return

@@ -230,3 +230,5 @@
   > pipenv install django-dotenv
 
 - #75 Email Verification by Django Sending Email 2
+
+- #76 Email Verification by Django Sending Email 3
