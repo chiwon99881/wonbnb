@@ -58,6 +58,7 @@ class User(AbstractUser):
         if self.email_verified is False:
             secret = uuid.uuid4().hex[:20]
             self.email_secret = secret
+            self.save()
             html_message = render_to_string(
                 "emails/verify_email.html", context={"secret": secret}
             )

@@ -232,3 +232,5 @@
 - #75 Email Verification by Django Sending Email 2
 
 - #76 Email Verification by Django Sending Email 3
+
+- #77 Email Verification by Django Sending Email 4
