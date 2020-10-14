@@ -236,3 +236,11 @@
 - #77 Email Verification by Django Sending Email 4
 
 - #78 Github Login 1
+
+  > https://docs.github.com/en/free-pro-team@latest/developers/apps/authorizing-oauth-apps#1-request-a-users-github-identity
+
+  > https://github.com/settings/applications/1393659
+
+- #79 Github Login 2
+
+  > pipenv install requests
