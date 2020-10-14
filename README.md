@@ -248,3 +248,9 @@
 - #80 Github Login 3
 
 - #81 Github Login 4
+
+- #82 Kakao Login 1
+
+  > https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
+
+  > https://developers.kakao.com/console/app/492757
