@@ -120,6 +120,7 @@ def github_callback(request):
                             bio=bio,
                             username=username,
                             login_method=models.User.LOGIN_GITHUB,
+                            email_verified=True,
                         )
                         new_user.set_unusable_password()
                         new_user.save()
@@ -148,27 +149,52 @@ def kakao_login(request):
 def kakao_callback(request):
     try:
         code = request.GET.get("code", None)
-        client_id = os.environ.get("KAKAO_API_KEY")
-        redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback/"
-        code_to_post = requests.post(
-            f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}",
-            headers={
-                "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-                "Accept": "application/json",
-            },
-        )
-        result_json = code_to_post.json()
-        access_token = result_json.get("access_token")
-
-        profile_get = requests.get(
-            "https://kapi.kakao.com/v2/user/me",
-            headers={
-                "Authorization": f"Bearer {access_token}",
-                "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-                "Accept": "application/json",
-            },
-        )
-        print(profile_get.json())
-
+        if code is not None:
+            client_id = os.environ.get("KAKAO_API_KEY")
+            redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback/"
+            code_to_post = requests.post(
+                f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}",
+                headers={
+                    "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+                    "Accept": "application/json",
+                },
+            )
+            result_json = code_to_post.json()
+            access_token = result_json.get("access_token", None)
+            if access_token is not None:
+                profile_get = requests.get(
+                    "https://kapi.kakao.com/v2/user/me",
+                    headers={
+                        "Authorization": f"Bearer {access_token}",
+                        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+                        "Accept": "application/json",
+                    },
+                )
+                profile = profile_get.json()
+                print(profile)
+                email = profile.get("kakao_account").get("email")
+                name = profile.get("kakao_account").get("profile").get("nickname")
+                try:
+                    check_user = models.User.objects.get(email=email)
+                    if check_user.login_method == models.User.LOGIN_KAKAO:
+                        login(request, check_user)
+                    else:
+                        raise KakaoException()
+                except models.User.DoesNotExist:
+                    new_user = models.User.objects.create(
+                        email=email,
+                        username=email,
+                        first_name=name,
+                        login_method=models.User.LOGIN_KAKAO,
+                        email_verified=True,
+                    )
+                    new_user.set_unusable_password()
+                    new_user.save()
+                    login(request, new_user)
+                return redirect(reverse("core:home"))
+            else:
+                raise KakaoException()
+        else:
+            raise KakaoException()
     except KakaoException:
         return redirect(reverse("users:login"))

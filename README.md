@@ -254,3 +254,5 @@
   > https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
 
   > https://developers.kakao.com/console/app/492757
+
+- #83 Kakao Login 2
