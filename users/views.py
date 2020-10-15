@@ -5,6 +5,7 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
+from django.core.files.base import ContentFile
 from . import forms, models
 
 # Compare FormView with View and Check what difference.
@@ -174,6 +175,9 @@ def kakao_callback(request):
                 print(profile)
                 email = profile.get("kakao_account").get("email")
                 name = profile.get("kakao_account").get("profile").get("nickname")
+                profile_image = (
+                    profile.get("kakao_account").get("profile").get("profile_image")
+                )
                 try:
                     check_user = models.User.objects.get(email=email)
                     if check_user.login_method == models.User.LOGIN_KAKAO:
@@ -190,6 +194,14 @@ def kakao_callback(request):
                     )
                     new_user.set_unusable_password()
                     new_user.save()
+                    if profile_image is not None:
+                        profile_image_request = requests.get(profile_image)
+                        # ContentFile function changes "byte contents" to "file"
+                        # file.content() means that byte.
+                        new_user.avatar.save(
+                            f"{name} - avatar",
+                            ContentFile(profile_image_request.content),
+                        )
                     login(request, new_user)
                 return redirect(reverse("core:home"))
             else:
