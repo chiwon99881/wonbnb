@@ -175,6 +175,7 @@ def kakao_callback(request):
                 print(profile)
                 email = profile.get("kakao_account").get("email")
                 name = profile.get("kakao_account").get("profile").get("nickname")
+                # profile_image is URL
                 profile_image = (
                     profile.get("kakao_account").get("profile").get("profile_image")
                 )

@@ -260,9 +260,25 @@
 - #84 Kakao Login 3 (Get profile image and upload that to my User Model's avatar)
 
   > Get "Image URL" from kakao_account and go to the URL then you will see image right?
+
   > Get The image's bytes by content function while request and response
+
   > Then, change the bytes to file by using ContentFile()
+
   > Finally, run users.avatar.save()
 
   > refer users.avatar.save() to 👇
+
   > https://docs.djangoproject.com/en/3.1/ref/models/fields/#filefield-and-fieldfile
+
+- #85 Setup TailwindCSS with Gulp
+
+  > npm init
+
+  > npm install gulp gulp-postcss gulp-sass gulp-csso node-sass -D
+
+  > npm install tailwindcss -D
+
+  > npx tailwind init
+
+  > npm install autoprefixer@9.7.0 -D
