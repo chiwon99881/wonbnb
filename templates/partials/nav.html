@@ -1,16 +1,13 @@
-<ul class="flex items-center text-sm font-medium">
+<ul class="flex items-center text-sm font-medium h-full">
     {% if user.is_authenticated %}
-        <li class="
-        m-6 border-b border-white hover:border-gray-800">
+        <li class="nav_link">
             <a href="{% url 'users:logout' %}" >Log out</a>
         </li>
     {% else %}
-        <li class="
-        m-6 border-b border-white hover:border-gray-800">
+        <li class="nav_link">
             <a href="{% url 'users:login' %}" >Log in</a>
         </li>
-        <li class="
-        m-6 border-b border-white hover:border-gray-800">
+        <li class="nav_link">
             <a href="{% url 'users:signup' %}" >Sign up</a>
         </li>
     {% endif %} 

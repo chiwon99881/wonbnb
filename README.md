@@ -294,3 +294,5 @@
   > em is the most close font size (1em = most close font size, 2em = 2 most close font size)
 
 - #88 Use TailwindCSS 2
+
+- #89 Use TailwindCSS 3 (@apply)
