@@ -2,8 +2,14 @@
 
 {% block pagename %}Home{% endblock pagename %}
 
+
+
 {%block content %} 
-{{now}}
+
+    <div class="container mx-auto rounded-3xl bg-gray-800 h-50vh mt-32 mb-24 bg-cover bg-center"
+        style="background-image: url(https://images.unsplash.com/photo-1530667912788-f976e8ee0bd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop);">
+
+    </div>
 {% for room in rooms %}
     <h4>
         <a href="{% url 'rooms:detail' room.pk %}">

@@ -296,3 +296,5 @@
 - #88 Use TailwindCSS 2
 
 - #89 Use TailwindCSS 3 (@apply)
+
+- #90 Use TailwindCSS 4 (Customized)
