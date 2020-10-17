@@ -292,3 +292,5 @@
   > rem(root em) is root font-size (1rem = root font size, 2rem = 2root font size)
 
   > em is the most close font size (1em = most close font size, 2em = 2 most close font size)
+
+- #88 Use TailwindCSS 2

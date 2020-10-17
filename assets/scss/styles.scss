@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// if you modify this file, you must run this command : "num run css"
+
+@layer utilities {
+  .search-box {
+    transition: box-shadow 0.5s linear;
+  }
+}

@@ -1,8 +1,17 @@
 <ul class="flex items-center text-sm font-medium">
     {% if user.is_authenticated %}
-        <li class="m-6"><a href="{% url 'users:logout' %}" >Log out</a></li>
+        <li class="
+        m-6 border-b border-white hover:border-gray-800">
+            <a href="{% url 'users:logout' %}" >Log out</a>
+        </li>
     {% else %}
-        <li class="m-6"><a href="{% url 'users:login' %}" >Log in</a></li>
-        <li class="m-6"><a href="{% url 'users:signup' %}" >Sign up</a></li>
+        <li class="
+        m-6 border-b border-white hover:border-gray-800">
+            <a href="{% url 'users:login' %}" >Log in</a>
+        </li>
+        <li class="
+        m-6 border-b border-white hover:border-gray-800">
+            <a href="{% url 'users:signup' %}" >Sign up</a>
+        </li>
     {% endif %} 
 </ul>
