@@ -282,3 +282,5 @@
   > npx tailwind init
 
   > npm install autoprefixer@9.7.0 -D
+
+- #86 Static File registed for URL
