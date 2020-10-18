@@ -124,3 +124,10 @@ class Room(core_models.TimeStampedModel):
     def get_absolute_url(self):
         # return f"/rooms/{self.pk}"
         return reverse("rooms:detail", kwargs={"pk": self.pk})
+
+    def first_photo(self):
+        (photo,) = self.photos.all()[:1]
+        # "photo," means that get first element of array
+        # For example, one, two, three = self.photos.all() this means that
+        # one is first element, two is second element, three is third element of array
+        return photo.file.url
