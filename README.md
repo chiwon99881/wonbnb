@@ -300,3 +300,7 @@
 - #90 Use TailwindCSS 4 (Customized)
 
 - #91 Use TailwindCSS 5 (Room_Card)
+
+- #92 Use TailwindCSS 6 (fontawesome)
+
+> https://fontawesome.com/
