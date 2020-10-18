@@ -1,7 +1,7 @@
 <div class="w-1/4 mb-8 px-2">
     <div class="w-full h-64 bg-cover bg-center rounded-xl" 
         style="background-image: url({{room.first_photo}})"></div>
-    <div class="flex justify-between mt-1">
+    <div class="flex justify-between mt-2">
         <div class="flex">
             {% if room.host.superhost %}
                 <div class="text-xs font-medium uppercase mr-1 px-1 text-black
@@ -15,5 +15,8 @@
             <i class="fas fa-star text-red-500 text-xs mr-1"></i> 
             {{room.total_rating_average}}
         </span>
+    </div>
+    <div class="mt-1 text-black font-medium text-sm">
+        {{room.name}}
     </div>
 </div>

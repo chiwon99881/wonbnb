@@ -304,3 +304,5 @@
 - #92 Use TailwindCSS 6 (fontawesome)
 
 > https://fontawesome.com/
+
+- #93 Use TailwindCSS 7 (paginator)
