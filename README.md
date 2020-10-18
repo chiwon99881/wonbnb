@@ -308,3 +308,5 @@
 - #93 Use TailwindCSS 7 (paginator)
 
 - #94 Use TailwindCSS 8 (footer, social login)
+
+- #95 User TailwindCSS (login screen)
