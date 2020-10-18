@@ -309,4 +309,6 @@
 
 - #94 Use TailwindCSS 8 (footer, social login)
 
-- #95 User TailwindCSS (login screen)
+- #95 Use TailwindCSS (login screen)
+
+- #96 Use TailwindCSS (signup screen)

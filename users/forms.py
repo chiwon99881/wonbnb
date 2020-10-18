@@ -4,8 +4,14 @@ from . import models
 
 class LoginForm(forms.Form):
 
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"class": "custom_input", "placeholder": "Email"})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "custom_input", "placeholder": "Password"}
+        )
+    )
 
     # clean method used when two field are related each others.
     def clean(self):
@@ -30,8 +36,29 @@ class SignUpForm(forms.ModelForm):
         model = models.User
         fields = ("first_name", "last_name", "email")
 
-    password = forms.CharField(widget=forms.PasswordInput)
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
+        widgets = {
+            "first_name": forms.TextInput(
+                attrs={"class": "custom_input", "placeholder": "First Name"}
+            ),
+            "last_name": forms.TextInput(
+                attrs={"class": "custom_input", "placeholder": "Last Name"}
+            ),
+            "email": forms.EmailInput(
+                attrs={"class": "custom_input", "placeholder": "Email"}
+            ),
+        }
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "custom_input", "placeholder": "Password"}
+        )
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "custom_input", "placeholder": "Confirm Password"}
+        ),
+        label="Confirm Password",
+    )
 
     # clean method executed sequentially so,
     # you do not use password, password1 variable in clean_password method
