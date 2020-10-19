@@ -14,15 +14,8 @@
             <div class="font-semibold text-gray-600 mx-2">or</div>
             <div class="h-px bg-gray-400 w-full"></div>
         </div>
-        <form method="POST" action="{% url 'users:login' %}" 
-            class="w-full flex flex-col">
-            {% csrf_token %}
-            {{form.email}}
-            {{form.password}}
-            <button class="w-full bg-red-400 rounded-md p-4 text-white font-medium">
-                Login
-            </button>
-        </form>
+        
+        {% include 'partials/auth.html' with form=form button="Log In" %}
 
         <div class="mt-5 w-full flex justify-center items-center">
             <span class="font-medium mr-3">Don't have an account ?</span>

@@ -314,3 +314,5 @@
 - #96 Use TailwindCSS (signup screen)
 
 - #97 Signup error handling with TailwindCSS
+
+- #98 Refactoring login/signup template

@@ -1,0 +1,29 @@
+<!-- form에 action을 안 넣으면 그 url 그대로 action값이 먹힌다 -->
+<form method="POST" class="w-full flex flex-col">
+    {% csrf_token %}
+    
+    <!-- non_field_errors 는 예를 들어, 특정 필드에서 에러를 호출하는게 아니라 그냥 
+    에러를 호출하고 해당 에러에 대한 필드를 None으로 지정했을 때, 이 에러가 실행된다.
+    일반적으로 General Error를 발생시킬 때 사용 
+    -->
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <span class="text-red-700 text-sm font-medium">{{error}}</span>
+        {% endfor %}
+    {% endif %}
+
+    {% for field in form %}
+        <div class="input_container {% if field.errors %}has_error{% endif %}">
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <span class="text-red-700 text-sm font-medium">{{error}}</span>
+                {% endfor %}
+            {% endif %}
+            {{field}}
+        </div>
+    {% endfor %}
+                
+    <button class="w-full bg-red-400 rounded-md p-4 text-white font-medium">
+        {{button}}
+    </button>
+</form>
