@@ -312,3 +312,5 @@
 - #95 Use TailwindCSS (login screen)
 
 - #96 Use TailwindCSS (signup screen)
+
+- #97 Signup error handling with TailwindCSS

@@ -60,6 +60,14 @@ class SignUpForm(forms.ModelForm):
         label="Confirm Password",
     )
 
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        try:
+            models.User.objects.get(email=email)
+            raise forms.ValidationError("That email is already taken")
+        except models.User.DoesNotExist:
+            return email
+
     # clean method executed sequentially so,
     # you do not use password, password1 variable in clean_password method
     # because password1 is below password so clean_password method don't understand password1

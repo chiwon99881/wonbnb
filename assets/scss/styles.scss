@@ -24,4 +24,19 @@
   }
 }
 
+@keyframes tinkle {
+  from {
+    @apply bg-red-400;
+  }
+  to {
+    @apply bg-white;
+  }
+}
+
+.input_container.has_error {
+  input {
+    animation: tinkle 2s linear;
+  }
+}
+
 @tailwind utilities;
