@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
+from django.contrib import messages
 from . import forms, models
 
 # Compare FormView with View and Check what difference.
@@ -150,6 +151,7 @@ def kakao_login(request):
 def kakao_callback(request):
     try:
         code = request.GET.get("code", None)
+        raise KakaoException()
         if code is not None:
             client_id = os.environ.get("KAKAO_API_KEY")
             redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback/"
@@ -210,4 +212,5 @@ def kakao_callback(request):
         else:
             raise KakaoException()
     except KakaoException:
+        messages.error(request, "KAKAO LOGIN ERROR")
         return redirect(reverse("users:login"))

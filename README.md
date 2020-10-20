@@ -316,3 +316,7 @@
 - #97 Signup error handling with TailwindCSS
 
 - #98 Refactoring login/signup template
+
+- #99 Django-message 1 (Test)
+
+  > https://docs.djangoproject.com/en/3.1/ref/contrib/messages/
