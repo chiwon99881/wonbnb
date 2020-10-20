@@ -12,6 +12,7 @@
     <title>{% block pagename %}{% endblock pagename %} | Wonbnb</title>
   </head>
   <body class="text-gray-800 mt-24 font-light">
+    {% include 'partials/messages.html' %}
     <header class="
     container max-w-full flex justify-between px-6 h-20 border-b inset-0
     border-gray-400 fixed bg-white">
@@ -31,7 +32,6 @@
       {% include "partials/nav.html" %} 
     </header>
     {% block content %} {% endblock %}
-    {% include 'partials/messages.html' %}
     {% include "partials/footer.html" %}
   </body>
 </html>

@@ -1,8 +1,12 @@
 <!-- user.is_authenticated 처럼 messages 도 context.processor 덕분에 한번에 가져올 수 있다  -->
 {% if messages %}
-    <ul class="message">
+    <ul class="absolute mx-auto left-0 top-0 right-0 z-10 flex justify-center items-center">
         {% for message in messages %}
-            <li class="message {% if message.tags %}{{message.tags}}{% endif %}">{{message}}</li>
+            <li class="bg-green-500 p-4 text-base 
+            text-white font-semibold rounded-lg 
+            {% if message.tags %}{{message.tags}}{% endif %}">
+                {{message}}
+            </li>
         {% endfor %}
     </ul>
 {% endif %}

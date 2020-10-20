@@ -320,3 +320,5 @@
 - #99 Django-message 1 (Test)
 
   > https://docs.djangoproject.com/en/3.1/ref/contrib/messages/
+
+- #100 Django-message 2 (Login Success Message)

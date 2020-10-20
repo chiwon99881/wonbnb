@@ -93,7 +93,7 @@ def github_callback(request):
             result_json = code_to_post.json()
             error = result_json.get("error", None)
             if error is not None:
-                raise GithubException()
+                raise GithubException("Can't authorized your github.")
             else:
                 access_token = result_json.get("access_token")
                 profile_request = requests.get(
@@ -112,9 +112,14 @@ def github_callback(request):
                     try:
                         check_user = models.User.objects.get(email=email)
                         if check_user.login_method == models.User.LOGIN_GITHUB:
+                            messages.success(
+                                request, f"Welcome {check_user.first_name}"
+                            )
                             login(request, check_user)
                         else:
-                            raise GithubException()
+                            raise GithubException(
+                                f"Please login with your {check_user.login_method}"
+                            )
                     except models.User.DoesNotExist:
                         new_user = models.User.objects.create(
                             email=email,
@@ -129,10 +134,11 @@ def github_callback(request):
                         login(request, new_user)
                     return redirect(reverse("core:home"))
                 else:
-                    raise GithubException()
+                    raise GithubException("Something wrong. please wait 1 minutes.")
         else:
-            raise GithubException()
-    except GithubException:
+            raise GithubException("Can't authorized your github.")
+    except GithubException as e:
+        messages.error(request, e)
         return redirect(reverse("users:login"))
 
 
@@ -151,7 +157,6 @@ def kakao_login(request):
 def kakao_callback(request):
     try:
         code = request.GET.get("code", None)
-        raise KakaoException()
         if code is not None:
             client_id = os.environ.get("KAKAO_API_KEY")
             redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback/"
@@ -186,7 +191,9 @@ def kakao_callback(request):
                     if check_user.login_method == models.User.LOGIN_KAKAO:
                         login(request, check_user)
                     else:
-                        raise KakaoException()
+                        raise KakaoException(
+                            f"Please login with your {check_user.login_method}"
+                        )
                 except models.User.DoesNotExist:
                     new_user = models.User.objects.create(
                         email=email,
@@ -208,9 +215,9 @@ def kakao_callback(request):
                     login(request, new_user)
                 return redirect(reverse("core:home"))
             else:
-                raise KakaoException()
+                raise KakaoException("You must agree email information.")
         else:
-            raise KakaoException()
-    except KakaoException:
-        messages.error(request, "KAKAO LOGIN ERROR")
+            raise KakaoException("Something wrong. please wait 1 minutes.")
+    except KakaoException as e:
+        messages.error(request, e)
         return redirect(reverse("users:login"))
