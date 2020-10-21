@@ -326,3 +326,5 @@
 - #101 Django-message 3 (Message style and DONE)
 
 - #102 User Profile (DetailView's context_object_name)
+
+- #103 User Profile 2 (User Avatar css)

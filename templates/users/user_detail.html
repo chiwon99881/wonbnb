@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
 
-{% block pagename %}Profile{% endblock pagename %}
+{% block pagename %}{{user_obj.first_name}}'s Profile{% endblock pagename %}
 
     
 {% block content %}
-    <h1>{{user_obj.first_name}}</h1>
+    <div class="container border border-gray-400 mx-auto h-50vh mb-5 w-full
+    flex items-center flex-col">
+        <div class="container flex justify-center items-center">
+            {% include 'partials/user/user_avatar.html' with user=user_obj %}
+        </div>    
+        <div class="container flex justify-center items-center">
+            <span class="text-3xl font-medium mr-2">{{user_obj.first_name}}</span>
+            {% if user_obj.superhost %}
+                <i class="fas fa-check-circle text-teal-500"></i>
+            {% endif %}
+        </div>
+    </div>
 {% endblock content %}
     
