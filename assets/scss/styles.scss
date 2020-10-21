@@ -39,4 +39,43 @@
   }
 }
 
+@keyframes messageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  5% {
+    opacity: 100%;
+    transform: translateY(70px);
+  }
+  95% {
+    opacity: 100%;
+    transform: translateY(70px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+}
+
+//forwards는 마지막 값을 유지하는 설정 즉 100%일 때, 가지게 되는 css값을 그대로 가져라 라는 명령
+.message {
+  animation: messageFadeIn 3.5s ease-in-out forwards;
+  &.error {
+    @apply bg-red-400;
+  }
+  &.debug {
+    @apply bg-black;
+  }
+  &.info {
+    @apply bg-blue-400;
+  }
+  &.success {
+    @apply bg-green-400;
+  }
+  &.warning {
+    @apply bg-yellow-400;
+  }
+}
+
 @tailwind utilities;

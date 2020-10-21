@@ -322,3 +322,5 @@
   > https://docs.djangoproject.com/en/3.1/ref/contrib/messages/
 
 - #100 Django-message 2 (Login Success Message)
+
+- #101 Django-message 3 (Message style and DONE)

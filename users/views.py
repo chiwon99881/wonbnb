@@ -26,12 +26,14 @@ class LoginView(View):
 
             user = authenticate(request, username=email, password=password)
             if user is not None:
+                messages.success(request, f"Welcome {user.first_name} 👊")
                 login(request, user)
                 return redirect(reverse("core:home"))
         return render(request, "users/login.html", context={"form": form})
 
 
 def log_out(request):
+    messages.success(request, "Logout success 🖐")
     logout(request)
     return redirect(reverse("core:home"))
 
@@ -113,7 +115,7 @@ def github_callback(request):
                         check_user = models.User.objects.get(email=email)
                         if check_user.login_method == models.User.LOGIN_GITHUB:
                             messages.success(
-                                request, f"Welcome {check_user.first_name}"
+                                request, f"Welcome {check_user.first_name} 👊"
                             )
                             login(request, check_user)
                         else:
@@ -189,6 +191,7 @@ def kakao_callback(request):
                 try:
                     check_user = models.User.objects.get(email=email)
                     if check_user.login_method == models.User.LOGIN_KAKAO:
+                        messages.success(request, f"Welcome {check_user.first_name} 👊")
                         login(request, check_user)
                     else:
                         raise KakaoException(
