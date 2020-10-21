@@ -324,3 +324,5 @@
 - #100 Django-message 2 (Login Success Message)
 
 - #101 Django-message 3 (Message style and DONE)
+
+- #102 User Profile (DetailView's context_object_name)
