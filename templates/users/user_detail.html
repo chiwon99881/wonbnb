@@ -5,17 +5,37 @@
 
     
 {% block content %}
-    <div class="container border border-gray-400 mx-auto h-50vh mb-5 w-full
+<div class="container min-w-full flex flex-col items-center mb-25vh">
+    <div class="container border border-gray-400 mx-auto h-full w-1/4 p-8
     flex items-center flex-col">
         <div class="container flex justify-center items-center">
             {% include 'partials/user/user_avatar.html' with user=user_obj %}
         </div>    
-        <div class="container flex justify-center items-center">
+        <div class="container flex justify-center items-center m-2">
             <span class="text-3xl font-medium mr-2">{{user_obj.first_name}}</span>
             {% if user_obj.superhost %}
-                <i class="fas fa-check-circle text-teal-500"></i>
+                <i class="fas fa-check-circle text-blue-500"></i>
             {% endif %}
         </div>
+        <span class="w-full text-sm text-center">{{user_obj.bio}}</span>
+        
+        {% if user == user_obj %}
+            <button class="w-full p-3 bg-blue-400 text-xl mt-3 rounded-md text-white">
+                <a href="#">Edit Profile</a>
+            </button>
+        {% endif %}
     </div>
+
+    <div class="container mx-auto mt-8 flex flex-col">
+        {% if user_obj.rooms.all.count > 0 %}
+            <span class="font-medium text-black text-center">Rooms</span>
+            <div class="w-full flex flex-wrap mt-10">
+                {% for room in user_obj.rooms.all %}
+                    {% include 'partials/room_card.html' with room=room %}
+                {% endfor %}
+            </div>
+        {% endif %}   
+    </div>
+</div>
 {% endblock content %}
     

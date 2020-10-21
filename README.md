@@ -328,3 +328,5 @@
 - #102 User Profile (DetailView's context_object_name)
 
 - #103 User Profile 2 (User Avatar css)
+
+- #104 User Profile 3

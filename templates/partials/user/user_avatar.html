@@ -1,9 +1,9 @@
 {% if user.avatar %}
-    <div class="w-32 h-32 rounded-circle bg-cover bg-center mt-5" 
+    <div class="w-32 h-32 rounded-circle bg-cover bg-center" 
         style="background-image: url({{user.avatar.url}});"></div>
 {% else %}
     <div class="w-32 h-32 rounded-circle bg-blue-600 
-        flex justify-center items-center mt-5">
+        flex justify-center items-center">
         <span class="text-white font-medium text-4xl">
             {{user.first_name|first}}
         </span>
