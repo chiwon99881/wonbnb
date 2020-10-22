@@ -233,3 +233,15 @@ class UserProfileView(DetailView):
     # context_object_name 이 의미하는 것은 현재 View가 클릭한 유저를 context에 담고
     # 그 유저를 뿌려주겠다는 의미
     context_object_name = "user_obj"
+
+
+def user_profile_update(request, pk):
+
+    user = models.User.objects.get(pk=pk)
+
+    if request.method == "GET":
+        return render(request, "users/user_update.html", context={"user": user})
+
+    if request.method == "POST":
+        update_first_name = request.POST.get("first_name")
+        print(update_first_name)

@@ -330,3 +330,5 @@
 - #103 User Profile 2 (User Avatar css)
 
 - #104 User Profile 3
+
+- #105 User Edit Profile 1 (Function Based View)
