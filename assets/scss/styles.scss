@@ -18,9 +18,9 @@
 }
 
 .custom_input {
-  @apply w-full p-5 border border-gray-500 rounded-md mb-4;
+  @apply w-full p-5 border border-gray-500 rounded-md mb-4 text-sm text-black;
   &:focus {
-    @apply outline-none border-teal-500;
+    @apply outline-none border-blue-500;
   }
 }
 
@@ -37,6 +37,10 @@
   input {
     animation: tinkle 2s linear;
   }
+}
+
+.error {
+  @apply text-red-700 text-sm font-medium;
 }
 
 @keyframes messageFadeIn {

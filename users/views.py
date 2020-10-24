@@ -265,4 +265,12 @@ def user_profile_update(request, pk):
 
 def user_password_update(request, pk):
 
-    pass
+    if request.method == "GET":
+        form = forms.ChangePasswordForm()
+        return render(request, "users/change_password.html", context={"form": form})
+
+    if request.method == "POST":
+        form = forms.ChangePasswordForm(request.POST, pk=pk)
+        if form.is_valid():
+            print(form.cleaned_data)
+        return redirect(reverse("users:change-password", kwargs={"pk": pk}))

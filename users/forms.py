@@ -87,3 +87,31 @@ class SignUpForm(forms.ModelForm):
         user.username = username
         user.set_password(password)
         user.save()
+
+
+# View에서 Form으로 Form에 있는 Input data가 아닌 그 외의 data를 넘기는 방법
+# __init__ 함수를 오버라이딩하여 View에서 Form을 부를때, pk 값을 넣어주어 그 pk값을 init함수에서 뽑아온다.
+class ChangePasswordForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop("pk", None)
+        super().__init__(*args, **kwargs)
+
+    current_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "custom_input", "placeholder": "Current Password"}
+        )
+    )
+    change_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "custom_input", "placeholder": "Change Password"}
+        )
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "custom_input", "placeholder": "Confirm Password"}
+        )
+    )
+
+    def clean_current_password(self):
+        print("PKPK!=>", self.pk)
+        return self.cleaned_data
