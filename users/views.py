@@ -243,5 +243,26 @@ def user_profile_update(request, pk):
         return render(request, "users/user_update.html", context={"user": user})
 
     if request.method == "POST":
+        update_avatar = request.FILES.get("avatar")
         update_first_name = request.POST.get("first_name")
-        print(update_first_name)
+        update_last_name = request.POST.get("last_name")
+        update_bio = request.POST.get("bio")
+        update_currency = request.POST.get("currency")
+
+        try:
+            user.first_name = update_first_name
+            user.last_name = update_last_name
+            user.bio = update_bio
+            user.currency = update_currency
+            user.avatar = update_avatar
+            user.save()
+            messages.success(request, "Update Complete 😘")
+            return redirect(reverse("users:profile", kwargs={"pk": pk}))
+        except Exception:
+            messages.error(request, "Something is wrong 😥")
+            return redirect(reverse("users:edit-profile", kwargs={"pk": pk}))
+
+
+def user_password_update(request, pk):
+
+    pass

@@ -18,4 +18,7 @@ urlpatterns = [
     ),
     path("<int:pk>/", views.UserProfileView.as_view(), name="profile"),
     path("<int:pk>/edit-profile/", views.user_profile_update, name="edit-profile"),
+    path(
+        "<int:pk>/change-password/", views.user_password_update, name="change-password"
+    ),
 ]

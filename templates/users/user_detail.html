@@ -20,9 +20,9 @@
         <span class="w-full text-sm text-center">{{user_obj.bio}}</span>
         
         {% if user == user_obj %}
-            <button class="w-full p-3 bg-blue-400 text-xl mt-3 rounded-md text-white">
-                <a href="{% url 'users:edit-profile' pk=user.pk %}">Edit Profile</a>
-            </button>
+            <a href="{% url 'users:edit-profile' pk=user.pk %}" class="mt-3 w-full p-3 bg-blue-400 text-xl rounded-md text-white text-center font-medium">
+                    Edit Profile
+            </a>
         {% endif %}
     </div>
 

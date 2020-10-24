@@ -332,3 +332,5 @@
 - #104 User Profile 3
 
 - #105 User Edit Profile 1 (Function Based View)
+
+- #106 User Edit Profile 2 (Function Based View)
