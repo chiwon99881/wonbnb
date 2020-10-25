@@ -113,5 +113,29 @@ class ChangePasswordForm(forms.Form):
     )
 
     def clean_current_password(self):
-        print("PKPK!=>", self.pk)
-        return self.cleaned_data
+        try:
+            user = models.User.objects.get(pk=self.pk)
+            current_password = self.cleaned_data.get("current_password")
+            if user.check_password(current_password):
+                return current_password
+            else:
+                self.add_error(
+                    "current_password",
+                    forms.ValidationError("Your current password was wrong."),
+                )
+        except models.User.DoesNotExist:
+            self.add_error(None, forms.ValidationError("User Does not exist."))
+
+    def clean_confirm_password(self):
+        change_password = self.cleaned_data.get("change_password")
+        confirm_password = self.cleaned_data.get("confirm_password")
+
+        if change_password == confirm_password:
+            return change_password
+        else:
+            self.add_error(
+                "confirm_password",
+                forms.ValidationError(
+                    "Confirm password is inconsistent with change password."
+                ),
+            )

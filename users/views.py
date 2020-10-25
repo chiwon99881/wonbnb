@@ -272,5 +272,13 @@ def user_password_update(request, pk):
     if request.method == "POST":
         form = forms.ChangePasswordForm(request.POST, pk=pk)
         if form.is_valid():
-            print(form.cleaned_data)
-        return redirect(reverse("users:change-password", kwargs={"pk": pk}))
+            change_password = form.cleaned_data.get("change_password")
+            try:
+                user = models.User.objects.get(pk=pk)
+                user.set_password(change_password)
+                user.save()
+                messages.success(request, "Success update password 😘")
+                return redirect(reverse("users:edit-profile", kwargs={"pk": pk}))
+            except models.User.DoesNotExist:
+                messages.error(request, "Something is broken. please logout and reply.")
+        return render(request, "users/change_password.html", context={"form": form})

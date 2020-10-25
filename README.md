@@ -336,3 +336,5 @@
 - #106 User Edit Profile 2 (Function Based View)
 
 - #107 Change Password 1
+
+- #108 Change Password 2 (Finish)
