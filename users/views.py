@@ -271,13 +271,16 @@ def user_password_update(request, pk):
     if request.method == "GET":
         try:
             user = models.User.objects.get(pk=pk)
-            if user.login_method != "email":
-                return redirect(reverse("core:home"))
+            if request.user == user:
+                if user.login_method != "email":
+                    return redirect(reverse("core:home"))
+                else:
+                    form = forms.ChangePasswordForm()
+                    return render(
+                        request, "users/change_password.html", context={"form": form}
+                    )
             else:
-                form = forms.ChangePasswordForm()
-                return render(
-                    request, "users/change_password.html", context={"form": form}
-                )
+                return redirect(reverse("core:home"))
         except models.User.DoesNotExist:
             return redirect(reverse("core:home"))
 
