@@ -44,11 +44,14 @@
             
             <button class="w-full bg-blue-500 rounded-md text-center font-semibold text-sm p-4 text-white">Update</button>
         </form>
-        <a href="{% url 'users:change-password' pk=user.pk %}">
-            <span class="block w-full text-center text-sm font-semibold text-blue-500 mb-4">
-                Change Password
-            </span>
-        </a>
+        
+        {% if user.login_method == "email" %}
+            <a href="{% url 'users:change-password' pk=user.pk %}">
+                <span class="block w-full text-center text-sm font-semibold text-blue-500 mb-4">
+                    Change Password
+                </span>
+            </a>
+        {% endif %}
     </div>
 {% endblock content %}
     

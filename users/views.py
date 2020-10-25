@@ -7,13 +7,13 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
 from django.contrib import messages
-from . import forms, models
+from . import forms, models, mixins
 
 # Compare FormView with View and Check what difference.
 
 
 # No FormView
-class LoginView(View):
+class LoginView(mixins.LoggedOutOnlyView, View):
     def get(self, request):
         form = forms.LoginForm()
         return render(request, "users/login.html", context={"form": form})
@@ -39,7 +39,7 @@ def log_out(request):
 
 
 # FormView
-class SignUpView(FormView):
+class SignUpView(mixins.LoggedOutOnlyView, FormView):
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
@@ -240,7 +240,10 @@ def user_profile_update(request, pk):
     user = models.User.objects.get(pk=pk)
 
     if request.method == "GET":
-        return render(request, "users/user_update.html", context={"user": user})
+        if request.user != user:
+            return redirect(reverse("core:home"))
+        else:
+            return render(request, "users/user_update.html", context={"user": user})
 
     if request.method == "POST":
         update_avatar = request.FILES.get("avatar")
@@ -266,8 +269,17 @@ def user_profile_update(request, pk):
 def user_password_update(request, pk):
 
     if request.method == "GET":
-        form = forms.ChangePasswordForm()
-        return render(request, "users/change_password.html", context={"form": form})
+        try:
+            user = models.User.objects.get(pk=pk)
+            if user.login_method != "email":
+                return redirect(reverse("core:home"))
+            else:
+                form = forms.ChangePasswordForm()
+                return render(
+                    request, "users/change_password.html", context={"form": form}
+                )
+        except models.User.DoesNotExist:
+            return redirect(reverse("core:home"))
 
     if request.method == "POST":
         form = forms.ChangePasswordForm(request.POST, pk=pk)

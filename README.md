@@ -338,3 +338,9 @@
 - #107 Change Password 1
 
 - #108 Change Password 2 (Finish)
+
+- #109 Permission check on login,signup,update
+
+  > UserPassesTestMixin
+
+  > https://docs.djangoproject.com/en/3.1/topics/auth/default/
