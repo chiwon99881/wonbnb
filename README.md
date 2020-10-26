@@ -348,3 +348,5 @@
 - #110 Permission check finish
 
 - #111 Room Detail CSS 1
+
+- #112 Room Detail CSS 2
