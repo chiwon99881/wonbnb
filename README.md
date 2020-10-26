@@ -350,3 +350,7 @@
 - #111 Room Detail CSS 1
 
 - #112 Room Detail CSS 2
+
+- #113 Room Detail CSS 3
+
+  > https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#pluralize
