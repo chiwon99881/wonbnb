@@ -131,3 +131,7 @@ class Room(core_models.TimeStampedModel):
         # For example, one, two, three = self.photos.all() this means that
         # one is first element, two is second element, three is third element of array
         return photo.file.url
+
+    def get_last_four_photo(self):
+        last_four_photo = self.photos.all()[1:5]
+        return last_four_photo

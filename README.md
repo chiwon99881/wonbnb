@@ -346,3 +346,5 @@
   > https://docs.djangoproject.com/en/3.1/topics/auth/default/
 
 - #110 Permission check finish
+
+- #111 Room Detail CSS 1
