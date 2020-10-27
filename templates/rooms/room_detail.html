@@ -21,7 +21,7 @@
             </div>
             <div class="w-1/3">
                 <a href="{{room.host.get_absolute_url}}" class="flex flex-col items-center">
-                    {% include 'partials/user/user_avatar.html' with user=room.host %}
+                    {% include 'partials/user/user_avatar.html' with user=room.host h_and_w='w-24 h-24' %}
                     <span class="text-gray-600 w-full text-center">
                         {{room.host.first_name}} {{room.host.last_name}}
                     </span>
@@ -42,7 +42,77 @@
         </div>
         <div class="w-full border-b h-1 border-gray-500"></div>
 
+        <div class="w-full flex flex-col my-10">
+            <span class="text-xl font-medium mb-4 text-black">Amenities</span>
+            <div class="w-full flex flex-col">
+                {% for amenity in room.amenity.all %}
+                <div class="flex w-full items-center mb-1">
+                    <i class="fas fa-cannabis text-blue-500 mr-4"></i>
+                    <span class="mr-4">{{amenity.name}}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-full border-b h-1 border-gray-500"></div>
 
+        <div class="w-full flex flex-col my-10">
+            <span class="text-xl font-medium mb-4 text-black">Facilities</span>
+            <div class="w-full flex flex-col">
+                {% for facility in room.facility.all %}
+                <div class="flex w-full items-center mb-1">
+                    <i class="fas fa-box-open text-blue-500 mr-4"></i>
+                    <span class="mr-4">{{facility.name}}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-full border-b h-1 border-gray-500"></div>
+
+        <div class="w-full flex flex-col my-10">
+            <span class="text-xl font-medium mb-4 text-black">House Rules</span>
+            <div class="w-full flex flex-col">
+                {% for rule in room.house_rules.all %}
+                <div class="flex w-full items-center mb-1">
+                    <i class="fas fa-info-circle text-blue-500 mr-4"></i>
+                    <span class="mr-4">{{rule.name}}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-full border-b h-1 border-gray-500"></div>
+
+        <div class="w-full flex flex-col my-10">
+            <span class="text-xl font-medium mb-4 text-black">Reviews</span>
+            <div class="flex items-center">
+                <div class="flex items-center mr-3">
+                    <i class="fas fa-star text-blue-500 mr-2"></i>
+                    <span class="text-lg font-semibold">{{room.total_rating_average}}</span>
+                </div>
+                <div class="h-5 border-r border-gray-500"></div>
+                <div class="flex items-center ml-3">
+                    <span class="mr-2 text-lg font-semibold">{{room.reviews.count}}</span>
+                    <span class="text-lg">review{{room.reviews.all|pluralize}}</span>
+                </div>
+            </div>
+            <div class="mt-8">
+                <div class="my-3 w-full border-b h-1 border-gray-500"></div>
+                {% for review in room.reviews.all %}
+                    <div class="flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="mr-3">
+                                {% include 'partials/user/user_avatar.html' with user=review.user h_and_w='w-12 h-12' text_size='text-lg' %}
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-semibold">{{review.user.last_name}}</span>
+                                <span class="text-gray-500">{{review.created|date:"F Y"}}</span>
+                            </div>
+                        </div>
+                        <span>{{review.review}}</span>
+                        <div class="my-3 w-full border-b h-1 border-gray-500"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

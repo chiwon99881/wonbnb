@@ -354,3 +354,7 @@
 - #113 Room Detail CSS 3
 
   > https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#pluralize
+
+- #114 Room Detail CSS 4
+
+  > https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#default
