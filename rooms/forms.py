@@ -32,3 +32,10 @@ class SearchForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(),
         required=False,
     )
+
+
+class EditRoomForm(forms.Form):
+
+    name = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea())
+    country = CountryField().formfield()

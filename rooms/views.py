@@ -1,6 +1,7 @@
 # import operator
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.core.paginator import Paginator
 from . import models as room_models
@@ -134,3 +135,20 @@ def search(request):
         "rooms/search.html",
         context={"form": form},
     )
+
+
+def edit_room(request, pk):
+
+    room = room_models.Room.objects.get(pk=pk)
+
+    if request.method == "GET":
+        if request.user != room.host:
+            return redirect(reverse("core:home"))
+
+        room_name = room.name
+        room_desc = room.description
+        room_country = room.country
+        form = forms.EditRoomForm(
+            data={"name": room_name, "description": room_desc, "country": room_country}
+        )
+        return render(request, "rooms/room_edit.html", context={"form": form})

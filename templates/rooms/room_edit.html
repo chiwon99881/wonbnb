@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block pagename %}Edit Room{% endblock pagename %}
+
+
+{% block content %}
+    
+    {% for field in form %}
+        {{field}}
+    {% endfor %}
+        
+{% endblock content %}
+    
+    
+    

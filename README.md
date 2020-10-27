@@ -358,3 +358,5 @@
 - #114 Room Detail CSS 4
 
   > https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#default
+
+- #115 Room Edit 1
