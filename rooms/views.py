@@ -148,7 +148,44 @@ def edit_room(request, pk):
         room_name = room.name
         room_desc = room.description
         room_country = room.country
+        room_city = room.city
+        room_price = room.price
+        room_address = room.address
+        room_guests = room.guests
+        room_beds = room.beds
+        room_bedrooms = room.bedrooms
+        room_baths = room.baths
+        room_check_in = room.check_in
+        room_check_out = room.check_out
+        room_instant_book = room.instant_book
+        room_room_type = room.room_type
+        room_amenity = room.amenity.all()
+        room_facility = room.facility.all()
+        room_house_rules = room.house_rules.all()
         form = forms.EditRoomForm(
-            data={"name": room_name, "description": room_desc, "country": room_country}
+            data={
+                "name": room_name,
+                "description": room_desc,
+                "country": room_country,
+                "city": room_city,
+                "price": room_price,
+                "address": room_address,
+                "guests": room_guests,
+                "beds": room_beds,
+                "bedrooms": room_bedrooms,
+                "baths": room_baths,
+                "check_in": room_check_in,
+                "check_out": room_check_out,
+                "instant_book": room_instant_book,
+                "room_type": room_room_type,
+                "amenity": room_amenity,
+                "facility": room_facility,
+                "house_rules": room_house_rules,
+            }
         )
         return render(request, "rooms/room_edit.html", context={"form": form})
+
+    if request.method == "POST":
+        form = forms.EditRoomForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)

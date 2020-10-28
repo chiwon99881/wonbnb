@@ -360,3 +360,5 @@
   > https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#default
 
 - #115 Room Edit 1
+
+- #116 Room Edit 2 (FBV)
