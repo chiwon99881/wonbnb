@@ -15,8 +15,11 @@
                 </div>
             {% endfor %}
             <button class="w-full rounded-lg bg-blue-500 p-5 text-center text-white text-lg font-medium mt-3">
-                Edit Room
+                Edit Complete
             </button>
+            <div class="w-full flex justify-center mt-5">
+                <a href="{% url 'rooms:photos' pk=room.pk %}" class="block rounded-lg bg-blue-400 p-2 text-white font-semibold">Edit Photos</a>
+            </div>
         </form>
     </div>    
 {% endblock content %}

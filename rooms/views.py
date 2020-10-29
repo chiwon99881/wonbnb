@@ -184,7 +184,9 @@ def edit_room(request, pk):
                 "house_rules": room_house_rules,
             }
         )
-        return render(request, "rooms/room_edit.html", context={"form": form})
+        return render(
+            request, "rooms/room_edit.html", context={"form": form, "room": room}
+        )
 
     if request.method == "POST":
         form = forms.EditRoomForm(request.POST)
@@ -231,3 +233,14 @@ def edit_room(request, pk):
             except Exception:
                 messages.error(request, "Something wrong.. please again later 😥")
                 return render(request, "rooms/room_edit.html", context={"form": form})
+
+
+def edit_photos(request, pk):
+
+    room = room_models.Room.objects.get(pk=pk)
+
+    if request.method == "GET":
+        if request.user != room.host:
+            return redirect(reverse("core:home"))
+        else:
+            return render(request, "rooms/room_photos.html", context={"room": room})
