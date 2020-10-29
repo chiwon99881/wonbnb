@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib import messages
 from django.core.paginator import Paginator
 from . import models as room_models
 from . import forms
@@ -188,4 +189,45 @@ def edit_room(request, pk):
     if request.method == "POST":
         form = forms.EditRoomForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
+            new_name = form.cleaned_data.get("name")
+            new_desc = form.cleaned_data.get("description")
+            new_country = form.cleaned_data.get("country")
+            new_city = form.cleaned_data.get("city")
+            new_price = form.cleaned_data.get("price")
+            new_address = form.cleaned_data.get("address")
+            new_guests = form.cleaned_data.get("guests")
+            new_beds = form.cleaned_data.get("beds")
+            new_bedrooms = form.cleaned_data.get("bedrooms")
+            new_baths = form.cleaned_data.get("baths")
+            new_check_in = form.cleaned_data.get("check_in")
+            new_check_out = form.cleaned_data.get("check_out")
+            new_instant_book = form.cleaned_data.get("instant_book")
+            new_room_type = form.cleaned_data.get("room_type")
+            new_amenity = form.cleaned_data.get("amenity")
+            new_facility = form.cleaned_data.get("facility")
+            new_house_rules = form.cleaned_data.get("house_rules")
+
+            room.name = new_name
+            room.description = new_desc
+            room.country = new_country
+            room.city = new_city
+            room.price = new_price
+            room.address = new_address
+            room.guests = new_guests
+            room.beds = new_beds
+            room.bedrooms = new_bedrooms
+            room.baths = new_baths
+            room.check_in = new_check_in
+            room.check_out = new_check_out
+            room.instant_book = new_instant_book
+            room.room_type = new_room_type
+            room.amenity.set(new_amenity)
+            room.facility.set(new_facility)
+            room.house_rules.set(new_house_rules)
+            try:
+                room.save()
+                messages.success(request, "Room Updated Completely 😍")
+                return redirect(reverse("rooms:detail", kwargs={"pk": pk}))
+            except Exception:
+                messages.error(request, "Something wrong.. please again later 😥")
+                return render(request, "rooms/room_edit.html", context={"form": form})
