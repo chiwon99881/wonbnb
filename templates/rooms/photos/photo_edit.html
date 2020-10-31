@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block pagename %}{{photo.caption}}'s Edit{% endblock pagename %}
+
+
+{% block content %}
+
+    <div class="w-1/3 mx-auto border border-gray-500 rounded-md">
+        <form method="POST" class="w-full flex flex-col p-2">
+            {% csrf_token %}
+            <input name="caption" value="{{photo.caption}}" class="custom_input"/>
+            <button class="mt-5 p-3 bg-blue-500 text-white font-medium rounded-md">
+                Edit Caption
+            </button>
+        </form>
+    </div>
+
+{% endblock content %}
+    
+    

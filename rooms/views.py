@@ -259,10 +259,44 @@ def delete_photo(request, pk):
         else:
             try:
                 photo.delete()
-                messages.success(request, "Photo delete Completely 😊")
+                messages.success(request, "Photo delete completely 😊")
                 time.sleep(2)
             except Exception:
                 messages.error(request, "Something is wrong.. please try it later 😥")
             return redirect(reverse("rooms:photos", kwargs={"pk": photo.room.pk}))
     else:
         return redirect(reverse("rooms:photos", kwargs={"pk": photo.room.pk}))
+
+
+@login_required
+def edit_photo_caption(request, pk):
+
+    if request.method == "GET":
+        try:
+            photo = room_models.Photo.objects.get(pk=pk)
+            if photo.room.host != request.user:
+                return redirect(reverse("core:home"))
+            else:
+                return render(
+                    request, "rooms/photos/photo_edit.html", context={"photo": photo}
+                )
+        except room_models.Photo.DoesNotExist:
+            return redirect(reverse("core:home"))
+
+    if request.method == "POST":
+
+        new_caption = request.POST.get("caption")
+        if new_caption is not None:
+            try:
+                photo = room_models.Photo.objects.get(pk=pk)
+                if request.user != photo.room.host:
+                    return redirect(reverse("core:home"))
+                else:
+                    photo.caption = new_caption
+                    photo.save()
+                    messages.success(request, "Edit caption completely 😊")
+                    return redirect(
+                        reverse("rooms:photos", kwargs={"pk": photo.room.pk})
+                    )
+            except room_models.Photo.DoesNotExist:
+                return redirect(reverse("core:home"))

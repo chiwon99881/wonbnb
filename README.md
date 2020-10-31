@@ -368,3 +368,5 @@
 - #118 Room Photos 1
 
 - #119 Room Photos 2 (Delete Photo)
+
+- #120 Room Photos 3 (Edit Photo)
