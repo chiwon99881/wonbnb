@@ -5,8 +5,10 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 from . import models as room_models
 from . import forms
+import time
 
 
 class HomeView(ListView):
@@ -244,3 +246,23 @@ def edit_photos(request, pk):
             return redirect(reverse("core:home"))
         else:
             return render(request, "rooms/room_photos.html", context={"room": room})
+
+
+@login_required
+def delete_photo(request, pk):
+
+    photo = room_models.Photo.objects.get(pk=pk)
+
+    if request.method == "GET":
+        if photo.room.host != request.user:
+            return redirect(reverse("core:home"))
+        else:
+            try:
+                photo.delete()
+                messages.success(request, "Photo delete Completely 😊")
+                time.sleep(2)
+            except Exception:
+                messages.error(request, "Something is wrong.. please try it later 😥")
+            return redirect(reverse("rooms:photos", kwargs={"pk": photo.room.pk}))
+    else:
+        return redirect(reverse("rooms:photos", kwargs={"pk": photo.room.pk}))
