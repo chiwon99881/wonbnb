@@ -300,3 +300,39 @@ def edit_photo_caption(request, pk):
                     )
             except room_models.Photo.DoesNotExist:
                 return redirect(reverse("core:home"))
+
+
+@login_required
+def upload_photo(request, pk):
+
+    room = room_models.Room.objects.get(pk=pk)
+
+    if request.method == "GET":
+        if room.host != request.user:
+            return redirect(reverse("core:home"))
+        else:
+            return render(request, "rooms/photos/photo_upload.html")
+
+    if request.method == "POST":
+        if request.user != room.host:
+            return redirect(reverse("core:home"))
+        else:
+            caption = request.POST.get("caption")
+            file = request.FILES.get("file")
+
+            if caption is None:
+                messages.warning(request, "Caption is Required. 😥")
+                return redirect(reverse("rooms:photo-upload", kwargs={"pk": pk}))
+            elif file is None:
+                messages.warning(request, "Room Photo is Required. 😥")
+                return redirect(reverse("rooms:photo-upload", kwargs={"pk": pk}))
+            else:
+                try:
+                    room_models.Photo.objects.create(
+                        caption=caption, file=file, room=room
+                    )
+                    messages.success(request, "Photo uploaded 🥰")
+                    return redirect(reverse("rooms:photos", kwargs={"pk": pk}))
+                except Exception:
+                    messages.error(request, "Create Error please try again later. 😥")
+                    return redirect(reverse("rooms:photo-upload", kwargs={"pk": pk}))

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block pagename %}Upload Photo{% endblock pagename %}
+
+
+{% block content %}
+    <div class="container w-4/12 mx-auto border border-gray-500 rounded-md mb-25vh">
+        <form method="POST" class="w-full flex flex-col" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="caption" placeholder="Caption" class="custom_input"/>
+            <input type="file" name="file" class="custom_input" accept="image/*" />
+
+            <div class="w-full flex justify-end">
+                <button class="bg-blue-500 text-white font-medium rounded-md p-4">Upload</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+    
+    
