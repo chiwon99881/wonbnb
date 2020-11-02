@@ -372,3 +372,7 @@
 - #120 Room Photos 3 (Edit Photo)
 
 - #121 Room Photos 4 (Upload Photo)
+
+- #122 Adding info to Sessions
+
+  > https://docs.djangoproject.com/en/3.1/topics/http/sessions/

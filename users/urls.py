@@ -21,4 +21,5 @@ urlpatterns = [
     path(
         "<int:pk>/change-password/", views.user_password_update, name="change-password"
     ),
+    path("switch_hosting/", views.switch_hosting, name="switch-hosting"),
 ]
