@@ -126,11 +126,15 @@ class Room(core_models.TimeStampedModel):
         return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     def first_photo(self):
-        (photo,) = self.photos.all()[:1]
-        # "photo," means that get first element of array
-        # For example, one, two, three = self.photos.all() this means that
-        # one is first element, two is second element, three is third element of array
-        return photo.file.url
+        try:
+            (photo,) = self.photos.all()[:1]
+            # "photo," means that get first element of array
+            # For example, one, two, three = self.photos.all() this means that
+            # one is first element, two is second element, three is third element of array
+            return photo.file.url
+        except Exception as e:
+            print(e)
+            return None
 
     def get_last_four_photo(self):
         last_four_photo = self.photos.all()[1:5]

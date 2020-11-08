@@ -8,6 +8,7 @@ urlpatterns = [
     path("<int:pk>/edit/", views.edit_room, name="edit"),
     path("<int:pk>/photos/", views.edit_photos, name="photos"),
     path("<int:pk>/photos/upload/", views.upload_photo, name="photo-upload"),
+    path("create/", views.create_room, name="create"),
     path("search/", views.search, name="search"),
     path("photos/<int:pk>/delete/", views.delete_photo, name="photo-delete"),
     path("photos/<int:pk>/edit/", views.edit_photo_caption, name="photo-caption-edit"),

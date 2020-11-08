@@ -77,3 +77,68 @@ class EditRoomForm(forms.Form):
         queryset=models.HouseRule.objects.all(),
         widget=forms.SelectMultiple(attrs={"class": "custom_input"}),
     )
+
+
+class CreateRoomForm(forms.ModelForm):
+    class Meta:
+        model = models.Room
+        fields = (
+            "name",
+            "description",
+            "country",
+            "city",
+            "price",
+            "address",
+            "guests",
+            "beds",
+            "bedrooms",
+            "baths",
+            "check_in",
+            "check_out",
+            "room_type",
+            "instant_book",
+            "amenity",
+            "facility",
+            "house_rules",
+        )
+
+        widgets = {
+            "name": forms.TextInput(
+                attrs={"class": "custom_input", "placeholder": "Room Name"}
+            ),
+            "description": forms.TextInput(
+                attrs={"class": "custom_input", "placeholder": "Room Description"}
+            ),
+            "country": forms.Select(attrs={"class": "custom_input"}),
+            "city": forms.TextInput(
+                attrs={"class": "custom_input", "placeholder": "City"}
+            ),
+            "price": forms.NumberInput(
+                attrs={"class": "custom_input", "placeholder": "Price"}
+            ),
+            "address": forms.TextInput(
+                attrs={"class": "custom_input", "placeholder": "Address"}
+            ),
+            "guests": forms.NumberInput(
+                attrs={"class": "custom_input", "placeholder": "Guests"}
+            ),
+            "beds": forms.NumberInput(
+                attrs={"class": "custom_input", "placeholder": "Beds"}
+            ),
+            "bedrooms": forms.NumberInput(
+                attrs={"class": "custom_input", "placeholder": "Bedrooms"}
+            ),
+            "baths": forms.NumberInput(
+                attrs={"class": "custom_input", "placeholder": "Baths"}
+            ),
+            "check_in": forms.TimeInput(
+                attrs={"class": "custom_input", "placeholder": "Check_In"}
+            ),
+            "check_out": forms.TimeInput(
+                attrs={"class": "custom_input", "placeholder": "Check_Out"}
+            ),
+            "room_type": forms.Select(attrs={"class": "custom_input"}),
+            "amenity": forms.SelectMultiple(attrs={"class": "custom_input"}),
+            "facility": forms.SelectMultiple(attrs={"class": "custom_input"}),
+            "house_rules": forms.SelectMultiple(attrs={"class": "custom_input"}),
+        }

@@ -336,3 +336,60 @@ def upload_photo(request, pk):
                 except Exception:
                     messages.error(request, "Create Error please try again later. 😥")
                     return redirect(reverse("rooms:photo-upload", kwargs={"pk": pk}))
+
+
+def create_room(request):
+
+    if request.method == "GET":
+        form = forms.CreateRoomForm()
+        return render(request, "rooms/room_create.html", context={"form": form})
+
+    if request.method == "POST":
+        form = forms.CreateRoomForm(request.POST)
+        if form.is_valid():
+
+            name = form.cleaned_data.get("name")
+            description = form.cleaned_data.get("description")
+            country = form.cleaned_data.get("country")
+            city = form.cleaned_data.get("city")
+            price = form.cleaned_data.get("price")
+            address = form.cleaned_data.get("address")
+            guests = form.cleaned_data.get("guests")
+            beds = form.cleaned_data.get("beds")
+            bedrooms = form.cleaned_data.get("bedrooms")
+            baths = form.cleaned_data.get("baths")
+            check_in = form.cleaned_data.get("check_in")
+            check_out = form.cleaned_data.get("check_out")
+            room_type = form.cleaned_data.get("room_type")
+            instant_book = form.cleaned_data.get("instant_book")
+            amenity = form.cleaned_data.get("amenity")
+            facility = form.cleaned_data.get("facility")
+            house_rules = form.cleaned_data.get("house_rules")
+
+            try:
+                create_room = room_models.Room.objects.create(
+                    name=name,
+                    host=request.user,
+                    description=description,
+                    country=country,
+                    city=city,
+                    price=price,
+                    address=address,
+                    guests=guests,
+                    beds=beds,
+                    bedrooms=bedrooms,
+                    baths=baths,
+                    check_in=check_in,
+                    check_out=check_out,
+                    room_type=room_type,
+                    instant_book=instant_book,
+                )
+                create_room.amenity.set(amenity)
+                create_room.facility.set(facility)
+                create_room.house_rules.set(house_rules)
+                messages.success(request, "Create room completely 😍")
+                return redirect(reverse("rooms:detail", kwargs={"pk": create_room.pk}))
+            except Exception as e:
+                print(e)
+                messages.error(request, "Something wrong while creating room. 😥")
+                return render(request, "rooms/room_create.html", context={"form": form})

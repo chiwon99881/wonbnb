@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block pagename %}Create Room{% endblock pagename %}
+
+
+{% block content %}
+    <div class="w-2/5 mx-auto p-5 border border-gray-300 rounded-md mb-32">
+        <form method="POST" class="w-full flex flex-col">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="error">{{error}}</span>
+                {% endfor %}
+            {% endif %}
+
+            
+            {% for field in form %}
+                <div class="input_container {% if field.errors %}has_error{% endif %}">
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span class="error">{{error}}</span>
+                        {% endfor %}
+                    {% endif %}
+                    <span class="text-sm text-gray-600 
+                    {% if field.name == 'instant_book' %}mr-1{% endif %}">
+                        {{field.name|upper}}
+                    </span>
+                    {{field}}
+                </div>
+            {% endfor %}
+                
+            <button class="bg-blue-500 text-white font-medium p-3 rounded-md">
+                Create Room
+            </button>
+        </form>
+    </div>
+{% endblock content %}
+    
