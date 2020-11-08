@@ -378,3 +378,5 @@
   > https://docs.djangoproject.com/en/3.1/topics/http/sessions/
 
 - #123 Create Room
+
+- #124 Delete Room

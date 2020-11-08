@@ -393,3 +393,21 @@ def create_room(request):
                 print(e)
                 messages.error(request, "Something wrong while creating room. 😥")
                 return render(request, "rooms/room_create.html", context={"form": form})
+
+
+@login_required
+def delete_room(request, pk):
+    room = room_models.Room.objects.get(pk=pk)
+    room_host = room.host
+
+    if request.user != room_host:
+        return redirect(reverse("core:home"))
+    else:
+        try:
+            room.delete()
+            messages.success(request, "Delete room completely.")
+            return redirect(reverse("users:profile", kwargs={"pk": room_host.pk}))
+        except Exception as e:
+            print(e)
+            messages.error(request, "Something wrong while deleting room. 😥")
+            return redirect(reverse("users:profile", kwargs={"pk": room_host.pk}))
