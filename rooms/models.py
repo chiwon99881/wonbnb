@@ -1,8 +1,10 @@
+from datetime import date
 from django.db import models
 from django_countries.fields import CountryField
 from django.urls import reverse
 from core import models as core_models
 from users import models as user_models
+from cal import Calendar
 
 # Create your models here.
 
@@ -139,3 +141,9 @@ class Room(core_models.TimeStampedModel):
     def get_last_four_photo(self):
         last_four_photo = self.photos.all()[1:5]
         return last_four_photo
+
+    def get_calendars(self):
+        today = date.today()
+        this_month = Calendar(today.year, today.month)
+        next_month = Calendar(today.year, today.month+1)
+        return [this_month, next_month]

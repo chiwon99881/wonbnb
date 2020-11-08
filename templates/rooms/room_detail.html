@@ -126,6 +126,31 @@
                 Delete Room
             </div>
         </a>
+        {% else %}
+            {% for calendar in room.get_calendars %}
+            <div class="mb-16">
+                <span class="font-medium text-black text-lg text-center w-full block mb-5">
+                    {{calendar.get_month}} / {{calendar.year}}
+                </span>
+                <div class="cal-grid mb-3">
+                    {% for day in calendar.day_names %}
+                        <span class="text-black font-medium">{{day}}</span>
+                    {% endfor %}
+                </div>
+                <div class="cal-grid">
+                    {% for days in calendar.get_days %}
+                        {% if days == 0 %}
+                            <span></span>
+                        {% else %}
+                            <span class="block bg-blue-400 p-2 text-center w-full text-white rounded-md font-medium
+                            hover:bg-white hover:text-blue-500 cursor-pointer">
+                                {{days}}
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
         {% endif %}
     </div>
 </div>

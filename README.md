@@ -380,3 +380,7 @@
 - #123 Create Room
 
 - #124 Delete Room
+
+- #125 Room Calendar with Python Calendar
+
+  > https://docs.python.org/3/library/calendar.html
